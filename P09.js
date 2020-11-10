@@ -33,13 +33,23 @@ function isValidMove(maze, x, y) {
   return true;
 }
 
-function printAllPaths(maze, x=0, y=0, pathString='') {
+function deepCopy(item) {
+  if (Array.isArray(item)) {
+    return item.map((i) => {
+      return deepCopy(i);
+    });
+  }
+  return item;
+}
+
+function printAllPaths(maze1, x=0, y=0, pathString='') {
+  // deep copy the maze
+  let maze = deepCopy(maze1);
 
   // check if we're at the end yet
   if (maze[x][y] === 'e') {
     // print the valid path
-    console.log('Path to the exit :', pathString); 
-    console.log(maze); 
+    console.log('Path to the exit :', pathString);
     return;
   }
 
